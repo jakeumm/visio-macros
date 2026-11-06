@@ -1,3 +1,5 @@
+Attribute VB_Name = "Auto_Size_Letter"
+
 Sub FitLetterAndScale()
     Const MARGIN As Double = 0.25        ' paper inches on each side
     Dim pg As Visio.Page, ps As Visio.Shape

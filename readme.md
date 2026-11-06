@@ -4,16 +4,31 @@
 
 The macro measures the drawing directly rather than running Visio's **Fit to Drawing** command. The printed page remains Letter size (8.5 × 11 inches); the drawing scale and page dimensions are adjusted to make the drawing fit.
 
-## Install and run
+## Install and run in one drawing
 
-1. In Visio, open **Developer → Visual Basic**.
-2. In the VBA editor, choose **Insert → Module**.
-3. Paste the contents of `letter-autosize.vsdm` into the module.
+1. Open the drawing in Visio and choose **Developer → Visual Basic**.
+2. In the VBA editor, select the drawing's project in Project Explorer. If Project Explorer is hidden, press **Ctrl+R**.
+3. Choose **File → Import File** and select `letter-autosize.bas`.
 4. Run `FitLetterAndScale` from the VBA editor, or press **F5** while the cursor is inside the macro.
 
-The macro runs as one undoable operation. Press **Ctrl+Z** to undo it.
+The imported module is named `Auto_Size_Letter`. VBA module names must be valid identifiers, so they cannot contain hyphens; the macro itself is still named `FitLetterAndScale`.
 
-To keep the macro in the drawing, save the file as a Visio macro-enabled drawing (`.vsdm`). To make it available while working in other drawings, store it in a macro-enabled stencil (`.vssm`).
+The macro runs as a single operation and can be undone by pressing **Ctrl+Z**it. 
+
+To keep the macro in the drawing, you must save the Save the drawing as a Visio macro-enabled drawing (`.vsdm`).
+
+## Make it available in other drawings
+
+Install the macro in a macro-enabled Visio stencil so you do not need to import the module into every drawing:
+
+1. In Visio, create a new stencil and save it as a Visio Macro-Enabled Stencil (`.vssm`).
+2. Open that stencil's VBA project with **Developer → Visual Basic**.
+3. Select the stencil's project in Project Explorer, then choose **File → Import File** and select `letter-autosize.bas`.
+4. Save the `.vssm` stencil.
+5. In Visio, open **File → Options → Advanced → File Locations** and find the **Startup** folder location.
+6. Put the `.vssm` file in that folder, then restart Visio. The stencil will load at startup, and `FitLetterAndScale` will be available from **Developer → Macros** in other drawings.
+
+If Visio blocks the macro, use your organization's trusted-publisher or trusted-location policy rather than lowering macro security globally.
 
 ### Optional: Add a Quick Access Toolbar button
 
